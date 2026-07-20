@@ -20,10 +20,14 @@ const SkillCard = ({
 }: SkillRecord) => {
 	const [copied, setCopied] = useState(false);
 
-	const handleCopy = () => {
-		navigator.clipboard.writeText(installCommand);
-		setCopied(true);
-		setTimeout(() => setCopied(false), 2000);
+	const handleCopy = async () => {
+		try {
+			await navigator.clipboard.writeText(installCommand);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 2000);
+		} catch (_error) {
+			setCopied(false);
+		}
 	};
 
 	return (
@@ -52,7 +56,14 @@ const SkillCard = ({
 						<img src="logo512.png" alt="author avatar" className="avatar" />
 						<div className="author-copy">
 							<p>Adrian</p>
-							<p>{new Date(createdAt as string).toLocaleDateString()}</p>
+							<p>
+								{createdAt
+									? new Intl.DateTimeFormat("en-US", {
+											dateStyle: "medium",
+											timeZone: "UTC",
+									  }).format(new Date(createdAt))
+									: "Unknown date"}
+							</p>
 						</div>
 					</div>
 					<p className="category">{category}</p>
@@ -87,10 +98,10 @@ const SkillCard = ({
 							<ArrowBigUp size={16} fill="currentColor" />
 							<span>{tags.length}</span>
 						</button>
-                        <div className="comments">
-						    <MessageSquare size={14} />
-						    <span>{authorEmail ? 1 : 0}</span>
-					    </div>
+						<div className="comments">
+							<MessageSquare size={14} />
+							<span>{authorEmail ? 1 : 0}</span>
+						</div>
 					</div>
 
 					<div className="actions">
