@@ -1,3 +1,4 @@
+import { usePostHog } from "@posthog/react";
 import { Link } from "@tanstack/react-router";
 import {
 	ArrowBigUp,
@@ -19,12 +20,17 @@ const SkillCard = ({
 	title,
 }: SkillRecord) => {
 	const [copied, setCopied] = useState(false);
+	const posthog = usePostHog();
 
 	const handleCopy = async () => {
 		try {
 			await navigator.clipboard.writeText(installCommand);
 			setCopied(true);
 			setTimeout(() => setCopied(false), 2000);
+			posthog.capture("skill_install_command_copied", {
+				skill_title: title,
+				skill_category: category,
+			});
 		} catch (_error) {
 			setCopied(false);
 		}
@@ -61,7 +67,7 @@ const SkillCard = ({
 									? new Intl.DateTimeFormat("en-US", {
 											dateStyle: "medium",
 											timeZone: "UTC",
-									  }).format(new Date(createdAt))
+										}).format(new Date(createdAt))
 									: "Unknown date"}
 							</p>
 						</div>
