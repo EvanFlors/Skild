@@ -9,18 +9,24 @@ import {
 	MessageSquare,
 } from "lucide-react";
 import { useState } from "react";
+import type { GetSkillsData } from "#/dataconnect-generated";
+
+// Extract the type of a single skill from the GetSkills query result
+type SkillCardProps = GetSkillsData["skills"][number];
 
 const SkillCard = ({
-	authorEmail,
-	category,
 	createdAt,
 	description,
 	installCommand,
 	tags,
 	title,
-}: SkillRecord) => {
+	author,
+}: SkillCardProps) => {
+	console.log(createdAt);
 	const [copied, setCopied] = useState(false);
 	const posthog = usePostHog();
+
+	const category = tags[0] ?? "General";
 
 	const handleCopy = async () => {
 		try {
@@ -58,10 +64,14 @@ const SkillCard = ({
 
 			<div className="body">
 				<div className="meta">
-					<div className="autho">
-						<img src="logo512.png" alt="author avatar" className="avatar" />
+					<div className="author">
+						<img
+							src={author.image ?? "/logo512.png"}
+							alt={`${author.username ?? "User"}'s avatar`}
+							className="avatar"
+						/>
 						<div className="author-copy">
-							<p>Adrian</p>
+							<p>{author.username ?? "Anonymous"}</p>
 							<p>
 								{createdAt
 									? new Intl.DateTimeFormat("en-US", {
@@ -106,7 +116,7 @@ const SkillCard = ({
 						</button>
 						<div className="comments">
 							<MessageSquare size={14} />
-							<span>{authorEmail ? 1 : 0}</span>
+							<span>0</span>
 						</div>
 					</div>
 

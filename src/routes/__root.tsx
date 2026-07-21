@@ -46,6 +46,12 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			},
 		],
 	}),
+	notFoundComponent: () => (
+		<div className="not-found">
+			<h1>404 - Page Not Found</h1>
+			<p>The page you're looking for doesn't exist.</p>
+		</div>
+	),
 	shellComponent: RootDocument,
 });
 
@@ -70,9 +76,9 @@ function ClerkPostHogSync() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" className="dark" style={{ colorScheme: "dark" }}>
 			<head>
-				{/* TODO: remove/replace <script> dangerouslySetInnerHTML  */}
+				{/** biome-ignore lint/security/noDangerouslySetInnerHtml: Theme initialization script runs before React hydrates */}
 				<script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
 				<HeadContent />
 			</head>

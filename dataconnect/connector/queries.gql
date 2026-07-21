@@ -1,0 +1,21 @@
+query GetSkills($limit: Int = 10) @auth(level: PUBLIC) {
+  skills(
+    orderBy: [{ createdAt: DESC }]
+    limit: $limit
+  ) {
+    id
+    createdAt
+    title
+    description
+    tags
+    installCommand
+    promptConfig
+    usageExample
+    author {
+      clerkId
+      email
+      username
+      image
+    }
+  }
+}
