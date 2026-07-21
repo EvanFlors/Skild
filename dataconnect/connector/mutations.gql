@@ -1,0 +1,80 @@
+# Create a new user
+mutation CreateUser(
+  $clerkId: String!
+  $email: String!
+  $username: String
+  $image: String
+) @auth(level: PUBLIC) {
+  user_insert(
+    data: {
+      clerkId: $clerkId
+      email: $email
+      username: $username
+      image: $image
+    }
+  )
+}
+
+# Update user
+mutation UpdateUser(
+  $clerkId: String!
+  $email: String
+  $username: String
+  $image: String
+) @auth(level: PUBLIC) {
+  user_update(
+    key: { clerkId: $clerkId }
+    data: { email: $email, username: $username, image: $image }
+  )
+}
+
+# Create a new skill
+mutation CreateSkill(
+  $authorId: String!
+  $title: String!
+  $description: String!
+  $tags: [String!]!
+  $installCommand: String!
+  $promptConfig: String!
+  $usageExample: String!
+) @auth(level: PUBLIC) {
+  skill_insert(
+    data: {
+      authorClerkId: $authorId
+      title: $title
+      description: $description
+      tags: $tags
+      installCommand: $installCommand
+      promptConfig: $promptConfig
+      usageExample: $usageExample
+    }
+  )
+}
+
+# Update a skill
+mutation UpdateSkill(
+  $id: UUID!
+  $title: String
+  $description: String
+  $tags: [String!]
+  $installCommand: String
+  $promptConfig: String
+  $usageExample: String
+) @auth(level: PUBLIC) {
+  skill_update(
+    id: $id
+    data: {
+      title: $title
+      description: $description
+      tags: $tags
+      installCommand: $installCommand
+      promptConfig: $promptConfig
+      usageExample: $usageExample
+    }
+  )
+}
+
+# Delete a skill
+mutation DeleteSkill($id: UUID!) @auth(level: PUBLIC) {
+  skill_delete(id: $id)
+}

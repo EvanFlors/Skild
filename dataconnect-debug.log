@@ -1,0 +1,22 @@
+I0721 08:48:12.945788   24343 load.go:31] Reloading schema and connectors...
+I0721 08:48:12.975967   24343 control.go:100] [projects/emulator/locations/emulator/services/skild-6f15f-service 33bf] UpdateResources(): done
+Main schema: sources: schema/schema.gql [563B] 
+Connector "connector": sources: connector/mutations.gql [1536B] connector/queries.gql [338B] 
+I0721 08:48:13.009459   24343 codegen.go:101] [connector "connector" javascriptSdk] Generating sources into "/Users/efloresp06/Desktop/Proyectos/Websites/skild/src/dataconnect-generated"
+I0721 08:48:13.042493   24343 collector.go:107] schema extensions wrote into "/Users/efloresp06/Desktop/Proyectos/Websites/skild/dataconnect/.dataconnect/schema"
+Generated sources: prelude.gql [84995B] main/mutation.gql [6444B] main/implicit.gql [266B] main/input.gql [16106B] main/relation.gql [6569B] main/query.gql [2404B] 
+I0721 08:48:13.068818   24343 collector.go:107] connector "connector" javascriptSdk wrote into "/Users/efloresp06/Desktop/Proyectos/Websites/skild/src/dataconnect-generated"
+Generated sources: esm/index.esm.js [3513B] react/index.d.ts [2991B] react/esm/package.json [17B] react/README.md [39541B] react/package.json [462B] react/index.cjs.js [2435B] react/esm/index.esm.js [2323B] .guides/setup.md [1682B] index.d.ts [6091B] esm/package.json [17B] index.cjs.js [3892B] README.md [32537B] package.json [855B] .guides/usage.md [2920B] .guides/config.json [236B] 
+I0721 08:48:13.071771   24343 installsdk.go:55] Package @dataconnect/generated is already installed. Skipping installation
+I0721 08:48:13.071998   24343 load.go:109] Finished reloading
+I0721 08:48:13.073151   24343 dev.go:101] Listening on address (HTTP + gRPC): 127.0.0.1:9399
+I0721 08:48:13.073434   24343 dev.go:101] Listening on address (HTTP + gRPC): [::1]:9399
+I0721 08:48:16.696358   24343 control.go:100] [projects/emulator/locations/emulator/services/skild-6f15f-service aab5] UpdateResources(): done
+Main schema: sources: schema/schema.gql [563B] 
+Connector "connector": sources: connector/mutations.gql [1536B] connector/queries.gql [338B] 
+I0721 08:48:16.705797   24343 configure_emulator.go:21] ConfigureEmulator successed
+Request: service_id: "skild-6f15f-service"
+connection_string: "postgres://127.0.0.1:5433/skild-6f15f-database?sslmode=disable"
+database: "skild-6f15f-database"
+
+Response: 
